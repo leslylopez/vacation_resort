@@ -28,6 +28,16 @@ function getRoomRate(event) {
       originalRoomRate = 150;
     }
 
+    if (theForm.roomType.value === "king") {
+
+      originalRoomRate = 150;
+    }
+
+    if (theForm.roomType.value === "twoBedroom") {
+
+      originalRoomRate = 150;
+    }
+
   }
 
   let summerRoomRate = 0;
@@ -72,20 +82,23 @@ discount = .20;
 // let SummerRoomCost = (numOfDays.value * summerRoomRate) * discount;
 
 // console.log  (SummerRoomCost)
-
- let discountAmount =  (summerRoomRate + originalRoomRate ) * discount;
-
+let originalRoomCost = (summerRoomRate + originalRoomRate) * numOfDays.value
+ let discountAmount =  ((summerRoomRate + originalRoomRate )*numOfDays.value) * discount;
  let roomCost = ((summerRoomRate + originalRoomRate)*numOfDays.value) - discountAmount
  let taxDue = roomCost * (12/100)
+ let totalCost = roomCost + taxDue
+
+ console.log (totalCost)
 
 
 
+let message = `
+<div> Original Room Cost: $${originalRoomCost} </div>
+<div> Discount: $${discountAmount} </div>
+<div> Discounted Room Cost: $${roomCost} </div>
+<div> Tax: $${taxDue.toFixed(2)} </div>
+<div> Total Cost $${totalCost} </div>
+`
+document.querySelector("#results").innerHTML = message;
 
-
-
-
-  //console.log(originalRoomRate);
-  //console.log(month);
-  //console.log(summerRoomRate);
-  //console.log(discount)
 }
